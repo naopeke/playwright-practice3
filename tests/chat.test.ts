@@ -7,28 +7,28 @@ test.describe('Chat testing', ()=>{
     test('chat testing_01', async({ page })=>{
     
         const browerInstance = await chromium.launch();
-        const automationUser1Context = await browerInstance.newContext();
-        const automationUser1Page = await automationUser1Context.newPage();
+        const userContext1 = await browerInstance.newContext();
+        const userPage1 = await userContext1.newPage();
     
-        await automationUser1Page.goto('');
-        await automationUser1Page.getByPlaceholder('channel').fill('naopeke');
-        await automationUser1Page.locator('#join_button').click();
-        await expect(automationUser1Page).toHaveURL('/naopeke', { timeout: 5000 });
+        await userPage1.goto('');
+        await userPage1.getByPlaceholder('channel').fill('naopeke');
+        await userPage1.locator('#join_button').click();
+        await expect(userPage1).toHaveURL('/naopeke', { timeout: 5000 });
         //toHaveValue()は<input>, <textarea>, toHaveText()は<div><span>
-        await expect(automationUser1Page.locator('#user-counter')).toHaveText('1', { timeout: 5000 });
+        await expect(userPage1.locator('#user-counter')).toHaveText('1', { timeout: 5000 });
     })
 
     test('chat testing_02', async({ page })=>{
         const browerInstance = await chromium.launch();
-        const automationUser2Context = await browerInstance.newContext();
-        const automationUser2Page = await automationUser2Context.newPage();
+        const userContext2 = await browerInstance.newContext();
+        const userPage2 = await userContext2.newPage();
 
-        await automationUser2Page.goto('/naopeke');
-        await automationUser2Page.getByPlaceholder('Name').fill('Taro');
-        const nameInput =  automationUser2Page.getByPlaceholder('Name');
+        await userPage2.goto('/naopeke');
+        await userPage2.getByPlaceholder('Name').fill('Taro');
+        const nameInput =  userPage2.getByPlaceholder('Name');
         await nameInput.focus();
         await nameInput.press('Enter');
-        await expect(automationUser2Page.locator('#user-counter')).toHaveText('2', { timeout: 5000 });
+        await expect(userPage2.locator('#user-counter')).toHaveText('2', { timeout: 5000 });
     })
 
     test('chat testing_03', async ({ page })=>{
