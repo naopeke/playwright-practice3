@@ -30,6 +30,10 @@ test.describe('Chat testing', ()=>{
         await nameInput.press('Enter');
         await expect(automationUser2Page.locator('#user-counter')).toHaveText('2', { timeout: 5000 });
     })
+
+    test('chat testing_03', async ({ page })=>{
+
+    })
 })
 
 
